@@ -23,7 +23,27 @@ Output: 0
 */
 
 const maxBalloons = (str) => {
-  // TODO: implement
+  // initialize hash map of chars
+  const charCounts = {
+    b: 0,
+    a: 0,
+    l: 0,
+    o: 0,
+    n: 0
+  };
+
+  // iterate over input string
+  // build a hash map of each letter
+  for (let i = 0; i < str.length; i++) {
+    if (charCounts[str[i]] >= 0) charCounts[str[i]]++;
+  }
+
+  // divide 'l' and 'o' by 2
+  charCounts['l'] = Math.floor(charCounts['l'] / 2);
+  charCounts['o'] = Math.floor(charCounts['o'] / 2);
+
+  // return minimum of map
+  return Math.min(...Object.values(charCounts));
 }
 
 module.exports = maxBalloons;
