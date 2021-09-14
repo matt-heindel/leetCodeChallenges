@@ -26,7 +26,43 @@ Output: "Qedo1ct-eeLg=ntse-T!"
  * @return {string}
  */
  var reverseOnlyLetters = function(s) {
-  // TODO: implement
+  // split input string into array of chars
+   let chars = s.split('');
+
+  // initialize pointers left and right
+  let left = 0;
+  let right = s.length - 1;
+
+  // iterate over each char in input string
+  while (left < right) {
+    // check if alpha char
+    let leftIsAlpha = isAlpha(chars[left]);
+    let rightIsAlpha = isAlpha(chars[right]);
+
+    if (!leftIsAlpha) {
+      left += 1;
+    }
+    if (!rightIsAlpha) {
+      right -= 1;
+    }
+    if (leftIsAlpha && rightIsAlpha) {
+      // swap
+      let swap = chars[left];
+      chars[left] = chars[right];
+      chars[right] = swap;
+
+      left += 1;
+      right -= 1;
+    }
+  }
+
+  return chars.join('');
 };
+
+// helper function to determine if a char is in alphabet
+const isAlpha = (char) => {
+  let charCode = char.charCodeAt(0)
+  return (charCode >= 97 && charCode <= 122) || (charCode >= 65 && charCode <= 90);
+}
 
 module.exports = reverseOnlyLetters;
