@@ -47,9 +47,7 @@ Output: "Qedo1ct-eeLg=ntse-T!"
     }
     if (leftIsAlpha && rightIsAlpha) {
       // swap
-      let swap = chars[left];
-      chars[left] = chars[right];
-      chars[right] = swap;
+      [chars[left], chars[right]] = [chars[right], chars[left]]
 
       left += 1;
       right -= 1;
