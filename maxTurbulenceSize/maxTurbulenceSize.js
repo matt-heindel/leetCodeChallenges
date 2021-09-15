@@ -34,8 +34,27 @@ Output: 1
  * @param {number[]} arr
  * @return {number}
  */
- var maxTurbulenceSize = function(arr) {
-  // TODO: implement
+var maxTurbulenceSize = function(arr) {
+  // edge case
+  if (arr.length === 1) return 1;
+
+  let countSignFlips = 1;
+  let maxSignFlips = 0;
+  let lastComparisonWasLessThan = false;
+  let thisComparisonIsLessThan;
+
+  for (var i = 0; i < arr.length - 1; i++) {
+    thisComparisonIsLessThan = arr[i] < arr[i + 1];
+    if (thisComparisonIsLessThan !== lastComparisonWasLessThan) {
+      countSignFlips += 1;
+    } else {
+      maxSignFlips = countSignFlips > maxSignFlips ? countSignFlips: maxSignFlips;
+      countSignFlips = 1;
+    }
+    lastComparisonWasLessThan = thisComparisonIsLessThan;
+  }
+
+  return maxSignFlips > countSignFlips ? maxSignFlips : countSignFlips;
 };
 
 module.exports = maxTurbulenceSize;
